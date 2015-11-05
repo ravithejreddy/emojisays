@@ -1,0 +1,24 @@
+
+<form action="/session" method="post">
+
+  <label>email</label>
+  <input type="text" name="email">
+
+  <label for="">password</label>
+  <input type="password" name="password">
+
+  <button>login</button>
+</form>
+
+<% if logged_in? %>
+<p>logged in: <%= current_user.email %></p>
+<% else %>
+<% end %>
+
+<div class="name-emo">
+  <% @leaders.each do |leader| %>
+  <h2><%= leader.name %></h2>
+  <% end %>
+  
+  <a href="/all">Time to vote</a>
+</div>
