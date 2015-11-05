@@ -1,7 +1,7 @@
-require 'sinatra'
-require 'sinatra/reloader' #reload the sinatra webpage
-require 'pry' #load in pry
-require 'pg' #to connect to postgres
+# require 'sinatra'
+# require 'sinatra/reloader' #reload the sinatra webpage
+# require 'pry' #load in pry
+# require 'pg' #to connect to postgres
 
 
 require_relative 'db_config'
