@@ -7,10 +7,8 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 </head>
 <body>
-  <%= session[:user_id] %>
-  <% if logged_in? %>
-  <p>logged in: <%= current_user.email %></p>
-  <% end %>
+
+  
   <%= yield %>
 
 </body>

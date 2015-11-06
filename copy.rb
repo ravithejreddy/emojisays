@@ -219,10 +219,3 @@
 
 
 ###################################Javascript#############################
-# <script type="text/javascript">
-#   $('.disable').click(function(e){
-#   e.preventDefault();
-# });
-# // if already clicked image must be disabled
-#
-# </script>

@@ -1,0 +1,266 @@
+--
+-- PostgreSQL database dump
+--
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: leaders; Type: TABLE; Schema: public; Owner: chada; Tablespace: 
+--
+
+CREATE TABLE leaders (
+    id integer NOT NULL,
+    name character varying(100),
+    user_id integer,
+    total_count integer
+);
+
+
+ALTER TABLE leaders OWNER TO chada;
+
+--
+-- Name: leaders_id_seq; Type: SEQUENCE; Schema: public; Owner: chada
+--
+
+CREATE SEQUENCE leaders_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE leaders_id_seq OWNER TO chada;
+
+--
+-- Name: leaders_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: chada
+--
+
+ALTER SEQUENCE leaders_id_seq OWNED BY leaders.id;
+
+
+--
+-- Name: users; Type: TABLE; Schema: public; Owner: chada; Tablespace: 
+--
+
+CREATE TABLE users (
+    id integer NOT NULL,
+    name character varying(100),
+    email character varying(100),
+    password_digest character varying(100)
+);
+
+
+ALTER TABLE users OWNER TO chada;
+
+--
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: chada
+--
+
+CREATE SEQUENCE users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE users_id_seq OWNER TO chada;
+
+--
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: chada
+--
+
+ALTER SEQUENCE users_id_seq OWNED BY users.id;
+
+
+--
+-- Name: votes; Type: TABLE; Schema: public; Owner: chada; Tablespace: 
+--
+
+CREATE TABLE votes (
+    id integer NOT NULL,
+    user_id integer,
+    leader_id integer,
+    emoji character varying(100),
+    emoji_value integer
+);
+
+
+ALTER TABLE votes OWNER TO chada;
+
+--
+-- Name: votes_id_seq; Type: SEQUENCE; Schema: public; Owner: chada
+--
+
+CREATE SEQUENCE votes_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE votes_id_seq OWNER TO chada;
+
+--
+-- Name: votes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: chada
+--
+
+ALTER SEQUENCE votes_id_seq OWNED BY votes.id;
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: chada
+--
+
+ALTER TABLE ONLY leaders ALTER COLUMN id SET DEFAULT nextval('leaders_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: chada
+--
+
+ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: chada
+--
+
+ALTER TABLE ONLY votes ALTER COLUMN id SET DEFAULT nextval('votes_id_seq'::regclass);
+
+
+--
+-- Data for Name: leaders; Type: TABLE DATA; Schema: public; Owner: chada
+--
+
+COPY leaders (id, name, user_id, total_count) FROM stdin;
+1	Hillary Clinton	\N	\N
+2	Bernie Sanders	\N	\N
+3	Martin OMalley	\N	\N
+4	Ben Carson	\N	\N
+5	Jed Bush	\N	\N
+6	Chris Christie	\N	\N
+7	Donald Trump	\N	\N
+\.
+
+
+--
+-- Name: leaders_id_seq; Type: SEQUENCE SET; Schema: public; Owner: chada
+--
+
+SELECT pg_catalog.setval('leaders_id_seq', 7, true);
+
+
+--
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: chada
+--
+
+COPY users (id, name, email, password_digest) FROM stdin;
+3	obama	obama@usa	$2a$10$PSaOBjUtJiOWvq1B9wzlB.Xl5hXeqgDzHJEPArFj6cQO4UxmziTVe
+4	obama	obama@usa.co	$2a$10$z5cujSMeNAM79km2BmI.fupRlaVCiMc3EBitF8AnHd1MYTi85zrPu
+5	dt	dt@ga.co	$2a$10$4AcrcyZMlXYPHqDtsxDcaeHBoQwY6j0X/0SUHve46MxlZ3NBOZp0i
+\.
+
+
+--
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: chada
+--
+
+SELECT pg_catalog.setval('users_id_seq', 5, true);
+
+
+--
+-- Data for Name: votes; Type: TABLE DATA; Schema: public; Owner: chada
+--
+
+COPY votes (id, user_id, leader_id, emoji, emoji_value) FROM stdin;
+2161049	4	1	angry	-1
+2161050	4	2	happy	1
+2161051	4	4	angry	-1
+2161052	4	6	angry	-1
+2161053	4	5	happy	1
+2161056	4	7	happy	1
+2161057	4	7	happy	1
+2161062	5	5	happy	1
+2161063	5	5	happy	1
+2161054	4	1	happy	1
+2161058	5	1	happy	1
+2161059	5	1	happy	1
+2161055	4	1	happy	1
+2161060	5	2	happy	1
+2161061	5	2	happy	1
+\.
+
+
+--
+-- Name: votes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: chada
+--
+
+SELECT pg_catalog.setval('votes_id_seq', 2161063, true);
+
+
+--
+-- Name: leaders_pkey; Type: CONSTRAINT; Schema: public; Owner: chada; Tablespace: 
+--
+
+ALTER TABLE ONLY leaders
+    ADD CONSTRAINT leaders_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: chada; Tablespace: 
+--
+
+ALTER TABLE ONLY users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: votes_pkey; Type: CONSTRAINT; Schema: public; Owner: chada; Tablespace: 
+--
+
+ALTER TABLE ONLY votes
+    ADD CONSTRAINT votes_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: public; Type: ACL; Schema: -; Owner: chada
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM chada;
+GRANT ALL ON SCHEMA public TO chada;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+--
+-- PostgreSQL database dump complete
+--
+

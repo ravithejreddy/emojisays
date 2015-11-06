@@ -23,3 +23,74 @@ h1{
   height:150px;
   width:150px;
 }
+
+.register{
+  height: 170px;
+  width: 350px;
+  margin-top: 100px;
+  margin-left: 300px;
+  margin-right: 150px;
+  padding: 40px 50px 40px 50px;
+  border-color: black;
+  border-radius: 20px;
+  -webkit-border-radius:20px;
+  -moz-box-sizing:20px;
+  background-color: rgba(255, 0, 0, 0.7);
+
+}
+.register input[type = 'text']{
+  width: 250px;
+  height: 20px;
+  margin-top: 15px;
+  margin-left: 35px;
+  margin-bottom: 10px;
+  border-color:black;
+  border-radius: 10px;
+  -webkit-border-radius:10px;
+  -moz-box-sizing:20px;
+}
+.register button{
+  width: 250px;
+  height: 30px;
+  margin-top: 20px;
+  border-color: black;
+  border-radius: 10px;
+  -webkit-border-radius:10px;
+  -moz-box-sizing:20px;
+  margin-left: 35px;
+}
+#log-in {
+  width: 200px;
+  height:100px;
+  border-radius: 10px;
+  -webkit-border-radius:10px;
+  -moz-box-sizing:20px;
+  margin: auto;
+}
+
+.session-form{
+  height:100px;
+  width:300px;
+  padding: 20px 60px 40px 60px;
+  margin-left: 150px;
+  margin-top: 50px;
+  margin-bottom: 50px
+}
+.session-form input{
+  width: 250px;
+  height: 20px;
+  padding:5px 5px 5px 5px;
+  margin-top: 15px;
+  margin-left: 35px;
+  margin-bottom: 5px;
+  border-color:black;
+  border-radius: 10px;
+  -webkit-border-radius:10px;
+  -moz-box-sizing:20px;
+}
+.session-form button{
+  width:260px;
+  height:20px;
+  margin-top: 5px;
+  margin-left: 35px;
+}
