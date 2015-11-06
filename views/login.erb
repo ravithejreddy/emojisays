@@ -13,11 +13,16 @@
 </div>
 
 
+<a href="/all" >Time to vote</a>
 
-<div class="name-emo">
+<div class="name-emo" >
+  <% count = 0 %>
   <% @leaders.each do |leader| %>
-  <h2><%= leader.name %></h2>
+  <img src= "/<%=leader.name%>.jpg" alt=""><br>
+  <h2 style="display:inline"><%= leader.name %></h2>
+  <p style="display:inline"><%= @votes[count] %></p><br>
+  <% count=count+1 %><br><br>
+
   <% end %>
 
-  <a href="/all">Time to vote</a>
 </div>

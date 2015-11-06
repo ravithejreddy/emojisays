@@ -11,17 +11,22 @@ require_relative 'models/vote'
 
 enable :sessions
 
+
+
+
+
 helpers do
+ #
+ # def clicked?
+ #   @votes = Vote.all
+ #   @votes.each do |vote|
+ #     if (vote(params[:emoji_value]).nil? || vote(params[:emoji_id]).empty?) || (vote(params[:leader_id]).nil? || vote(params[:leader_id]).empty?)
+ #       reject{vote}
+ #     end
+ #   end
+ #
+ #  end
 
- def clicked?
-   @votes = Vote.all
-   @votes.each do |vote|
-     if (vote(params[:emoji_value]).nil? || vote(params[:emoji_id]).empty?) || (vote(params[:leader_id]).nil? || vote(params[:leader_id]).empty?)
-       reject{vote}
-     end
-   end
-
-  end
 
  def current_user
   User.find_by(id: session[:user_id])
@@ -48,7 +53,20 @@ end
 
 #login page and list of all leaders
 get '/login' do
+  @votes =[]
   @leaders = Leader.all
+
+  @leaders.each do |leader|
+    vote_sum = Vote.where(leader_id: leader.id).sum(:emoji_value)
+    @votes << vote_sum
+  end
+  @leader_images = ['http://graphics8.nytimes.com/newsgraphics/2015/01/30/candidate-tracker/assets/images/clinton-square-150.jpg',
+  'http://graphics8.nytimes.com/newsgraphics/2015/01/30/candidate-tracker/assets/images/sanders-square-150.jpg',
+  'http://graphics8.nytimes.com/newsgraphics/2015/01/30/candidate-tracker/assets/images/omalley-square-150.jpg',
+  'http://graphics8.nytimes.com/newsgraphics/2015/01/30/candidate-tracker/assets/images/carson-square-150.jpg',
+  'http://graphics8.nytimes.com/newsgraphics/2015/01/30/candidate-tracker/assets/images/bush-square-150.jpg',
+  'http://graphics8.nytimes.com/newsgraphics/2015/01/30/candidate-tracker/assets/images/christie-square-150.jpg',
+  'http://graphics8.nytimes.com/newsgraphics/2015/01/30/candidate-tracker/assets/images/trump-square-150.jpg']
   erb :login
 end
 # authenticate user
